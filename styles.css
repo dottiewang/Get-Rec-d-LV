@@ -1,17 +1,9 @@
 :root{
-  --bg: #ffffff;
-  --text: #111827;
-  --muted: #6b7280;
-  --accent: #2563eb;
-  --card: #f9fafb;
-}
-
-[data-theme="dark"]{
-  --bg: #0b1220;
-  --text: #e6eef8;
-  --muted: #9aa6b2;
+  --bg: #000000;
+  --text: #ffffff;
+  --muted: #a0a0a0;
   --accent: #60a5fa;
-  --card: #071028;
+  --card: #111111;
 }
 
 *{box-sizing:border-box}
@@ -49,3 +41,85 @@ body{
 }
 
 .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
+.big-button {
+  font-size: 2rem;
+  padding: 1rem 2rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  margin: 2rem 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.big-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.big-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.rejection {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.rejection a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 2px solid var(--muted);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.rejection a:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+.alternative {
+  font-size: 1.5rem;
+  color: var(--accent);
+  font-style: italic;
+}
+
+.alternative a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 2px solid var(--accent);
+  transition: opacity 0.2s ease;
+}
+
+.alternative a:hover {
+  opacity: 0.8;
+}
+
+.final-decision {
+  font-size: 1.5rem;
+  color: var(--text);
+  font-style: italic;
+  text-align: right;
+  margin-top: 1.5rem;
+  font-weight: bold;
+}
+
+.final-decision a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 2px solid var(--accent);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.final-decision a:hover {
+  color: var(--accent);
+}
