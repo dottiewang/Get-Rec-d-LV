@@ -190,3 +190,46 @@ body{
 .final-decision a:hover {
   color: var(--accent);
 }
+
+.qr-footer {
+  margin-top: 2rem;
+  padding: 1rem 0 2rem;
+}
+
+.qr-card {
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 1rem;
+  max-width: 280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.qr-title {
+  margin: 0 0 0.8rem;
+  font-weight: 700;
+}
+
+.qr-image {
+  display: block;
+  margin: 0 auto 0.8rem;
+  width: min(180px, 100%);
+  height: auto;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 0.4rem;
+}
+
+.qr-link {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.qr-link:hover {
+  color: var(--text);
+}

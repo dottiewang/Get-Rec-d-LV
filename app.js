@@ -218,6 +218,31 @@ function populateRandomRec() {
   const formStatus = document.getElementById('formStatus');
   const yearEl = document.getElementById('year');
 
+  function addPageQrCode() {
+    if (!document.body || document.getElementById('page-qr-section')) {
+      return;
+    }
+
+    const qrTarget = window.location.origin + window.location.pathname;
+    const qrSrc = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=10&data=' + encodeURIComponent(qrTarget);
+
+    const section = document.createElement('section');
+    section.className = 'qr-footer';
+    section.id = 'page-qr-section';
+    section.setAttribute('aria-label', 'Page QR code');
+
+    section.innerHTML =
+      '<div class="container">' +
+        '<div class="qr-card">' +
+          '<p class="qr-title">Scan this page</p>' +
+          '<img class="qr-image" src="' + qrSrc + '" width="180" height="180" alt="QR code linking to this page" loading="lazy">' +
+          '<a class="qr-link" href="' + qrTarget + '">' + qrTarget + '</a>' +
+        '</div>' +
+      '</div>';
+
+    document.body.appendChild(section);
+  }
+
   function applyTheme(theme){
     if(theme === 'dark'){
       root.setAttribute('data-theme','dark');
@@ -290,5 +315,7 @@ function populateRandomRec() {
   if(yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
+
+  addPageQrCode();
 
 })();
