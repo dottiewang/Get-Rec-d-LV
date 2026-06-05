@@ -109,7 +109,7 @@ const speakeasies = [
   },
   {
     name: "Close Company",
-    location: "Venetian",
+    location: "The Strip (Venetian)",
     whatItIs: "Hidden cocktail bar from the Death & Co. team.",
     mustSee: "High-end craft cocktails and discreet entrance."
   },
