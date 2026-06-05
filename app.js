@@ -347,6 +347,14 @@ function populateRandomRec() {
   const yearEl = document.getElementById('year');
 
   function addPageQrCode() {
+    const pathname = window.location.pathname.toLowerCase();
+    const isRoot = pathname === '/' || pathname === '';
+    const isMainPage = isRoot || pathname.endsWith('/index') || pathname.endsWith('/index.html');
+
+    if (!isMainPage) {
+      return;
+    }
+
     if (!document.body || document.getElementById('page-qr-section')) {
       return;
     }
