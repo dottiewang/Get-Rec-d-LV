@@ -278,6 +278,13 @@ body{
   color: var(--text);
 }
 
+.qr-fallback {
+  margin: 0 auto 0.8rem;
+  max-width: 220px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 #main-content {
   padding-top: 0.2rem;
 }

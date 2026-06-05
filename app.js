@@ -351,8 +351,13 @@ function populateRandomRec() {
       return;
     }
 
-    const qrTarget = window.location.origin + window.location.pathname;
-    const qrSrc = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=10&data=' + encodeURIComponent(qrTarget);
+    const canonicalEl = document.querySelector('link[rel="canonical"]');
+    const qrTarget = (canonicalEl && canonicalEl.href) || window.location.href.split('#')[0];
+    const encodedTarget = encodeURIComponent(qrTarget);
+    const qrSources = [
+      'https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=10&data=' + encodedTarget,
+      'https://quickchart.io/qr?size=180&text=' + encodedTarget
+    ];
 
     const section = document.createElement('section');
     section.className = 'qr-footer';
@@ -363,12 +368,31 @@ function populateRandomRec() {
       '<div class="container">' +
         '<div class="qr-card">' +
           '<p class="qr-title">Scan this page</p>' +
-          '<img class="qr-image" src="' + qrSrc + '" width="180" height="180" alt="QR code linking to this page" loading="lazy">' +
+          '<img class="qr-image" src="' + qrSources[0] + '" width="180" height="180" alt="QR code linking to this page" loading="lazy">' +
           '<a class="qr-link" href="' + qrTarget + '">' + qrTarget + '</a>' +
         '</div>' +
       '</div>';
 
     document.body.appendChild(section);
+
+    const qrImg = section.querySelector('.qr-image');
+    if (!qrImg) {
+      return;
+    }
+
+    let qrSourceIndex = 0;
+    qrImg.addEventListener('error', function onQrError() {
+      qrSourceIndex += 1;
+      if (qrSourceIndex < qrSources.length) {
+        qrImg.src = qrSources[qrSourceIndex];
+        return;
+      }
+
+      const fallback = document.createElement('p');
+      fallback.className = 'qr-fallback';
+      fallback.textContent = 'Unable to load QR image right now. Use the link below.';
+      qrImg.replaceWith(fallback);
+    });
   }
 
   function applyTheme(theme){
