@@ -347,11 +347,14 @@ function populateRandomRec() {
   const yearEl = document.getElementById('year');
 
   function addPageQrCode() {
+    const hostname = window.location.hostname.toLowerCase();
     const pathname = window.location.pathname.toLowerCase();
-    const isRoot = pathname === '/' || pathname === '';
-    const isMainPage = isRoot || pathname.endsWith('/index') || pathname.endsWith('/index.html');
 
-    if (!isMainPage) {
+    const isProductionHost = hostname === 'getrecdlv.com' || hostname === 'www.getrecdlv.com';
+    const isRoot = pathname === '/' || pathname === '';
+    const isMainPage = isRoot || pathname === '/index' || pathname === '/index.html';
+
+    if (!isProductionHost || !isMainPage) {
       return;
     }
 
