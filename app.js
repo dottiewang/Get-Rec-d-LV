@@ -97,13 +97,13 @@ const speakeasies = [
   },
   {
     name: "Beauty & Essex",
-    location: "The Cosmopolitan",
+    location: "The Strip (The Cosmopolitan)",
     whatItIs: "Pawn shop front leading to a secret upscale lounge.",
     mustSee: "Hidden entrance through retail shop."
   },
   {
     name: "Chez Bippy",
-    location: "MGM Grand",
+    location: "The Strip (MGM Grand)",
     whatItIs: "Hidden speakeasy tucked inside a restaurant.",
     mustSee: "Secretive entrance and retro vibe."
   },
@@ -115,7 +115,7 @@ const speakeasies = [
   },
   {
     name: "The Count Room",
-    location: "Flamingo",
+    location: "The Strip (Flamingo)",
     whatItIs: "Mafia-themed hidden cocktail lounge.",
     mustSee: "Mob-inspired decor and tucked-away entrance."
   }
