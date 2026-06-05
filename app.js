@@ -37,11 +37,92 @@ const barsandlounges = [
   'https://getrecdlv.com/vesperbar.html',
   'https://getrecdlv.com/skybar.html',
   'https://getrecdlv.com/thevault.html',
-  'https://getrecdlv.com/1923prohibitionbar.html',
   'https://getrecdlv.com/julietcocktailroom.html'
 ];
 
+const speakeasies = [
+  {
+    name: "Easy's Cocktail Lounge",
+    location: "The Strip (Aria)",
+    whatItIs: "A hidden speakeasy tucked behind a casual food counter, blending upscale mixology with a low-key, secretive entrance.",
+    mustSee: "The discreet entry experience and their signature craft cocktails, which are among the best on the Strip."
+  },
+  {
+    name: "Here Kitty Kitty Vice Den",
+    location: "The Strip (Resorts World)",
+    whatItIs: "An intimate, Asian-inspired speakeasy concealed behind a secret door inside a restaurant.",
+    mustSee: "The hidden entrance and creatively themed cocktails with bold, unexpected flavor profiles."
+  },
+  {
+    name: "Ski Lodge",
+    location: "The Strip (The Cosmopolitan)",
+    whatItIs: "A concealed bar designed like a cozy alpine cabin, hidden behind an unmarked hallway.",
+    mustSee: "The dramatic transition from casino to mountain lodge and its warm, date-night atmosphere."
+  },
+  {
+    name: "The Lock",
+    location: "The Strip (Horseshoe, inside Cabinet of Curiosities)",
+    whatItIs: "A secret speakeasy accessed through an interactive vault-door experience inside a themed bar.",
+    mustSee: "The puzzle-like entry and personalized cocktail experience once inside."
+  },
+  {
+    name: "The Barbershop Cuts & Cocktails",
+    location: "The Strip (The Cosmopolitan)",
+    whatItIs: "A bar hidden behind a janitor's door inside a functioning barbershop that turns into a live-music whiskey lounge.",
+    mustSee: "The hidden door reveal and energetic live band performances."
+  },
+  {
+    name: "Ghost Donkey",
+    location: "The Strip (The Cosmopolitan)",
+    whatItIs: "A tucked-away mezcal and tequila bar hidden within a bustling food hall.",
+    mustSee: "Its vibrant decor and extensive agave spirit selection."
+  },
+  {
+    name: "Nomikai",
+    location: "The Strip (The Venetian)",
+    whatItIs: "A Japanese-inspired hidden cocktail bar blending speakeasy elements with a modern izakaya vibe.",
+    mustSee: "The unique Japanese whisky and sake-focused cocktail menu."
+  },
+  {
+    name: "The Vault",
+    location: "The Strip (Bellagio)",
+    whatItIs: "An ultra-exclusive hidden lounge known for its secrecy and limited access.",
+    mustSee: "The exclusivity itself; getting in is part of the experience."
+  },
+  {
+    name: "Caspian's Rock & Roe",
+    location: "The Strip (Caesars Palace)",
+    whatItIs: "A hidden lounge combining a caviar bar with a rock-and-roll-inspired speakeasy concept.",
+    mustSee: "The contrast between luxury caviar service and its edgy, music-driven atmosphere."
+  },
+  {
+    name: "Beauty & Essex",
+    location: "The Cosmopolitan",
+    whatItIs: "Pawn shop front leading to a secret upscale lounge.",
+    mustSee: "Hidden entrance through retail shop."
+  },
+  {
+    name: "Chez Bippy",
+    location: "MGM Grand",
+    whatItIs: "Hidden speakeasy tucked inside a restaurant.",
+    mustSee: "Secretive entrance and retro vibe."
+  },
+  {
+    name: "Close Company",
+    location: "Venetian",
+    whatItIs: "Hidden cocktail bar from the Death & Co. team.",
+    mustSee: "High-end craft cocktails and discreet entrance."
+  },
+  {
+    name: "The Count Room",
+    location: "Flamingo",
+    whatItIs: "Mafia-themed hidden cocktail lounge.",
+    mustSee: "Mob-inspired decor and tucked-away entrance."
+  }
+];
+
 let lastRecIndex = -1;
+let speakeasyDeck = [];
 
 const recs = [
   {
@@ -175,6 +256,18 @@ const recs = [
     location: "755 E Flamingo Rd, Las Vegas",
     whatItIs: "A Smithsonian-affiliated museum dedicated to the history of nuclear science and testing, especially the nuclear weapons testing that took place at the Nevada Test Site. It explores the Atomic Age, the Cold War, and the science behind nuclear technology.",
     mustSee: "The Ground Zero Theater (simulated nuclear test experience), actual nuclear test artifacts and equipment, the B53 nuclear bomb casing, and Atomic Age pop culture exhibits."
+  },
+  {
+    name: "Electra Cocktail Club",
+    location: "Inside The Venetian on the Las Vegas Strip",
+    whatItIs: "A stylish, high-energy cocktail lounge with DJs-somewhere between a bar and a nightclub.",
+    mustSee: "The massive digital art wall, creative signature cocktails, and the lively DJ-driven atmosphere."
+  },
+  {
+    name: "John Wick Experience",
+    location: "AREA15 (just off the Las Vegas Strip, about 5-10 minutes west)",
+    whatItIs: "An immersive, interactive attraction where you step into the world of John Wick-part escape room, part live-action theater with actors, story missions, and cinematic sets.",
+    mustSee: "The Continental hotel sets, live actor interactions, mission-style gameplay, and the themed Continental bar with signature cocktails."
   }
 ];
 
@@ -196,6 +289,41 @@ function getRandomClub() {
 function getRandomBarOrLounge() {
   const randomIndex = Math.floor(Math.random() * barsandlounges.length);
   window.location.href = barsandlounges[randomIndex];
+}
+
+function refillSpeakeasyDeck() {
+  speakeasyDeck = speakeasies.map((_, index) => index);
+  for (let i = speakeasyDeck.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = speakeasyDeck[i];
+    speakeasyDeck[i] = speakeasyDeck[j];
+    speakeasyDeck[j] = temp;
+  }
+}
+
+function getRandomSpeakeasyRecommendation() {
+  if (speakeasyDeck.length === 0) {
+    refillSpeakeasyDeck();
+  }
+
+  const nextIndex = speakeasyDeck.pop();
+  const pick = speakeasies[nextIndex];
+
+  const container = document.getElementById('speakeasy-rec');
+  const title = document.getElementById('speakeasy-title');
+  const location = document.getElementById('speakeasy-location');
+  const whatItIs = document.getElementById('speakeasy-what');
+  const mustSee = document.getElementById('speakeasy-must-see');
+
+  if (!container || !title || !location || !whatItIs || !mustSee) {
+    return;
+  }
+
+  title.textContent = pick.name;
+  location.textContent = pick.location;
+  whatItIs.textContent = pick.whatItIs;
+  mustSee.textContent = pick.mustSee;
+  container.hidden = false;
 }
 
 function populateRandomRec() {

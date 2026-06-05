@@ -6,6 +6,12 @@
     <title>Las Vegas Recommendations - Get Rec'd LV</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        .changed-mind-btn {
+            background: transparent !important;
+            border: 1px solid white;
+            color: white;
+            cursor: pointer;
+        }
         .site-nav a {
             color: white !important;
             text-decoration: none;
@@ -29,7 +35,7 @@
             <a class="logo" href="index.html">Get Rec'd LV</a>
             <nav class="site-nav" aria-label="Main navigation">
                 <ul>
-                    <li><button onclick="populateRandomRec(); return false;">Changed my fucking mind</button></li>
+                    <li><button class="changed-mind-btn" onclick="populateRandomRec(); return false;">Changed my fucking mind</button></li>
                 </ul>
             </nav>
         </div>
